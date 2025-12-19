@@ -4,7 +4,7 @@ option go_package = "github.com/RaihanSultana/common/orders";
 
 service OrderService{
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
-  rpc GetOrders(GetOrderRequest) returns (GetOrderResponse) {}
+ // rpc GetOrders(GetOrderRequest) returns (GetOrderResponse) {}
 }
 
 message Order{

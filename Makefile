@@ -1,3 +1,11 @@
+SHELL := bash
+run-orders:
+# 	@go run services/orders/*.go
+	@go run ./services/orders
+
+run-kitchen:
+	@go run services/kitchen/*.go
+
 gen:
 	@protoc \
 		--proto_path=protobuf "protobuf/orders.proto" \
