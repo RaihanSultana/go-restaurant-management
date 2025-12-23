@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/RaihanSultana/go-restaurant-management/services/orders/handler"
+	handler "github.com/RaihanSultana/go-restaurant-management/services/orders/handler/orders"
 	"github.com/RaihanSultana/go-restaurant-management/services/orders/service"
 	"google.golang.org/grpc"
 )
