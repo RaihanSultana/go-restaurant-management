@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS customers(
+  id SERIAL PRIMARY KEY, 
+  customer_name VARCHAR(255) NOT NULL, 
+  email VARCHAR(255) UNIQUE NOT NULL,
+  phone VARCHAR(255),
+  uuid UUID UNIQUE DEFAULT gen_random_uuid(),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
