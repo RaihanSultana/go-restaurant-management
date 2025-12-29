@@ -24,3 +24,4 @@ func (s *httpServer) Run() error {
 	log.Println("Starting servcer on: ", s.addr)
 	return http.ListenAndServe(s.addr, router)
 }
+	
