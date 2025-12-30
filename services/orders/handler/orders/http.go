@@ -27,6 +27,8 @@ func (h *OrdersHttpHandler) RegisterRouter(router *http.ServeMux) {
 	router.HandleFunc("POST /orders", h.CreateOrder)
 }
 
+// func mapRequestToOrder(res)
+
 func (h *OrdersHttpHandler) CreateOrder(w http.ResponseWriter, r *http.Request) {
 	var req orders.CreateOrderRequest
 	err := util.ParseJSON(r, &req)
@@ -39,8 +41,10 @@ func (h *OrdersHttpHandler) CreateOrder(w http.ResponseWriter, r *http.Request) 
 		OrderID:    42,
 		CustomerID: 2,
 		ProductID:  1,
-		Quantity:   10,	
+		Quantity:   10,
 	}
+
+	// order := mapRequestToOrder(req)
 
 	err = h.orderService.CreateOrder(r.Context(), order)
 	if err != nil {
