@@ -5,6 +5,7 @@ import (
 
 	util "github.com/RaihanSultana/go-restaurant-management/services/common"
 	"github.com/RaihanSultana/go-restaurant-management/services/common/genproto/orders"
+	"github.com/RaihanSultana/go-restaurant-management/services/orders/models"
 	"github.com/RaihanSultana/go-restaurant-management/services/orders/types"
 )
 
@@ -37,11 +38,11 @@ func (h *OrdersHttpHandler) CreateOrder(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	order := &orders.Order{
-		OrderID:    42,
+	order := &models.Order{
+		// OrderID:    42,
 		CustomerID: 2,
-		ProductID:  1,
-		Quantity:   10,
+		// ProductID:  1,
+		Quantity: 10,
 	}
 
 	// order := mapRequestToOrder(req)

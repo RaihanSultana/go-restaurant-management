@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"os"
 
 	_ "github.com/lib/pq"
@@ -64,19 +65,24 @@ func (c *EnvDBConfig) GetDatabase() string {
 }
 
 func ConnectToDB(config DBConfig) (*sql.DB, error) {
-	connectionString := fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		config.GetHost(),
-		config.GetPort(),
-		config.GetUsername(),
-		config.GetPassword(),
-		config.GetDatabase(),
-	)
+	// connectionString := fmt.Sprintf(
+	// 	"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+	// 	config.GetHost(),
+	// 	config.GetPort(),
+	// 	config.GetUsername(),
+	// 	config.GetPassword(),
+	// 	config.GetDatabase(),
+	// )
+	connectionString := "postgresql://neondb_owner:npg_0D3deKqUXGvz@ep-soft-resonance-aez8rjaz-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
 		return nil, err
 	} else {
 		fmt.Println("conenction success")
+	}
+
+	if err = db.Ping(); err != nil {
+		log.Fatalf("Error during ping", err)
 	}
 	return db, nil
 }

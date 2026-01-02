@@ -5,6 +5,7 @@ import (
 	"net"
 
 	handler "github.com/RaihanSultana/go-restaurant-management/services/orders/handler/orders"
+	"github.com/RaihanSultana/go-restaurant-management/services/orders/persistence"
 	"github.com/RaihanSultana/go-restaurant-management/services/orders/service"
 	"google.golang.org/grpc"
 )
@@ -26,7 +27,8 @@ func (s *gRPCServer) Run() error {
 	grpcServer := grpc.NewServer()
 
 	//register your grpc service
-	orderService := service.NewOrderService()
+	repo := persistence.NewOrderRepository(db)
+	orderService := service.NewOrderService(repo)
 	handler.NewGrpcOrderService(grpcServer, orderService)
 
 	log.Println("starting grpc server on:", s.addr)

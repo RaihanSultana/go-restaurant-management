@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -28,8 +29,9 @@ func (s *httpServer) Run() error {
 		ctx, cancel := context.WithTimeout(r.Context(), time.Second*2)
 		defer cancel()
 
+		fmt.Println("HTTP Create Order")
 		_, err := c.CreateOrder(ctx, &orders.CreateOrderRequest{
-			CustomerID: 24,
+			CustomerID: 1,
 			ProductID:  3124,
 			Quantity:   2,
 		})

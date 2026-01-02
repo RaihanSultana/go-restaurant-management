@@ -2,9 +2,9 @@ package handler
 
 import (
 	"context"
-	"math/rand/v2"
 
 	"github.com/RaihanSultana/go-restaurant-management/services/common/genproto/orders"
+	"github.com/RaihanSultana/go-restaurant-management/services/orders/models"
 	"github.com/RaihanSultana/go-restaurant-management/services/orders/types"
 	"google.golang.org/grpc"
 )
@@ -33,10 +33,8 @@ func (h *OrdersGrpcHandler) GetOrders(ctx context.Context, req *orders.GetOrderR
 }
 
 func (h *OrdersGrpcHandler) CreateOrder(ctx context.Context, req *orders.CreateOrderRequest) (resp *orders.CreateOrderResponse, error error) {
-	order := &orders.Order{
-		OrderID:    rand.Int32(),
+	order := &models.Order{
 		CustomerID: req.CustomerID,
-		ProductID:  req.ProductID,
 		Quantity:   req.Quantity,
 	}
 
