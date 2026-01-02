@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option go_package = "github.com/RaihanSultana/common/orders";
+
+service OrderService{
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+  rpc GetOrders(GetOrderRequest) returns (GetOrderResponse) {}
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse) {}
+  rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {}
+}
+
+message Item {
+  int32 item_id = 1;
+  string item_name = 2;
+  string item_description = 3;
+  double price = 4;
+}
+
+message OrderItem {
+  Item item = 1;
+  int32 quantity = 2;
+  double total = 3; // price * quantity
+}
+
+message Order{
+  int32 order_id = 1;
+  int32 customer_id = 2;
+  int32 product_id = 3 [deprecated = true];
+  int32 quantity = 4 [deprecated = true];
+  repeated OrderItem items = 5;
+  optional double total = 6 ;
+  optional double sub_total = 7;
+}
+
+message CreateOrderItem {
+  int32 item_id = 1;
+  int32 quantity = 2; 
+}
+
+message CreateOrderRequest{
+  int32 customer_id = 1;
+  int32 product_id = 2 [deprecated = true];
+  int32 quantity = 3 [deprecated = true];
+  repeated CreateOrderItem order_item = 4;
+} 
+
+message CreateOrderResponse{
+  string status = 1;
+  Order order = 2;
+}
+
+message GetOrderRequest{
+  int32 customer_id = 1;
+}
+
+// Order is slice of Order
+message GetOrderResponse{
+  repeated Order orders = 1;
+}
+
+message CancelOrderRequest{
+  int32 order_id = 1;
+}
+
+message CancelOrderResponse{
+  string status = 1;
+}
+
+message ListOrdersRequest{
+}
+
+message ListOrdersResponse{
+  repeated Order orders = 1;
+}
